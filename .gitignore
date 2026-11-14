@@ -1,0 +1,32 @@
+# Never publish: captured source text (copyright) and run working files
+scratch/
+sources/
+*.tgz
+
+# Built output — the site is built in CI, never committed
+_site/
+*.html
+!tools/page-shell.html
+
+# Local noise
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+
+# Living notes are analyst material and are not published (2026-11-14).
+# These local folders exist only as leftover placeholders; git ignores them.
+frontiers/
+threads/
+
+# Checking tools are withheld while the methodology is private (2026-11-14).
+# Only the three files the site build needs are published. Remove these lines
+# to publish the controls.
+tools/build-baseline-page.py
+tools/issue-lint.py
+tools/lint-rules.json
+tools/preflight.py
+tools/provenance-check.py
+tools/quote-extract.py
+tools/register-check.py
+tools/verify-brief.md

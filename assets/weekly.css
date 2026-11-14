@@ -1,0 +1,240 @@
+/* Extracted from the published weekly page, 2026-11-14.
+   External stylesheets the page relies on:
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+ */
+
+:root{
+  --paper:#f6f7f4; --panel:#eef0ea; --ink:#20282c; --ink-soft:#4c585e; --ink-faint:#646f6b;
+  --rule:#d4d9d0; --accent:#1f6e68; --accent-ink:#155450;
+  --good:#1e6b46; --good-bg:#dcebe0; --mid:#8a5a12; --mid-bg:#f1e6cc; --weak:#953a34; --weak-bg:#f0dcd8; --na:#5b6663; --na-bg:#e2e6df;
+  --kj-bg:#eaefe9; --code:#3d4a50;
+}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#151b1d; --panel:#1c2426; --ink:#dee5e1; --ink-soft:#a3b0ab; --ink-faint:#8d9892;
+    --rule:#2c3639; --accent:#57b0a8; --accent-ink:#7cc7bf;
+    --good:#7ec99b; --good-bg:#1c332591; --mid:#d9a75a; --mid-bg:#33290f91; --weak:#d98d85; --weak-bg:#38201d91; --na:#93a09b; --na-bg:#232b28;
+    --kj-bg:#1a2321; --code:#b9c4bf;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#151b1d; --panel:#1c2426; --ink:#dee5e1; --ink-soft:#a3b0ab; --ink-faint:#8d9892;
+  --rule:#2c3639; --accent:#57b0a8; --accent-ink:#7cc7bf;
+  --good:#7ec99b; --good-bg:#1c332591; --mid:#d9a75a; --mid-bg:#33290f91; --weak:#d98d85; --weak-bg:#38201d91; --na:#93a09b; --na-bg:#232b28;
+  --kj-bg:#1a2321; --code:#b9c4bf;
+}
+*{box-sizing:border-box}
+body{background:var(--paper); color:var(--ink); font-family:"Source Serif 4",Georgia,serif; font-size:16.5px; line-height:1.62; margin:0;}
+.wrap{max-width:920px; margin:0 auto; padding:0 24px 96px;}
+a{color:var(--accent-ink); text-decoration-color:color-mix(in srgb,var(--accent) 45%, transparent); text-underline-offset:2px;}
+a:hover{text-decoration-color:var(--accent)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:2px;}
+.mast{border-bottom:3px double var(--rule); padding:40px 0 20px; margin-bottom:8px;}
+.mast .over{font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); display:flex; flex-wrap:wrap; gap:6px 18px; margin-bottom:14px;}
+h1{font-family:Archivo,system-ui,sans-serif; font-weight:700; font-size:clamp(28px,4.4vw,40px); line-height:1.08; margin:0 0 12px; text-wrap:balance; letter-spacing:-.01em;}
+.mast .sub{color:var(--ink-soft); font-size:15px; max-width:66ch; margin:0;}
+nav.toc{font-family:"IBM Plex Mono",monospace; font-size:12px; display:flex; flex-wrap:wrap; gap:4px 16px; padding:12px 0 14px; border-bottom:1px solid var(--rule); margin-bottom:34px;}
+nav.toc a{color:var(--ink-soft); text-decoration:none;}
+nav.toc a:hover{color:var(--accent-ink)}
+h2{font-family:Archivo,system-ui,sans-serif; font-weight:600; font-size:21px; margin:52px 0 14px; letter-spacing:.005em; text-wrap:balance;}
+h2 .n{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--accent-ink); letter-spacing:.12em; display:block; margin-bottom:4px;}
+h3{font-family:Archivo,system-ui,sans-serif; font-weight:600; font-size:16.5px; margin:30px 0 8px;}
+p{margin:0 0 14px; max-width:70ch;}
+ul{max-width:70ch; padding-left:22px; margin:0 0 14px;}
+li{margin-bottom:8px;}
+.kj{background:var(--kj-bg); border-left:3px solid var(--accent); padding:16px 20px 14px; margin:0 0 14px; border-radius:0 4px 4px 0;}
+.kj .tag{font-family:"IBM Plex Mono",monospace; font-size:11.5px; font-weight:600; letter-spacing:.1em; color:var(--accent-ink); text-transform:uppercase; margin-bottom:6px; display:block;}
+.kj p{margin:0; font-size:15.5px;}
+.kj p+p{margin-top:8px}
+.rt{font-family:"IBM Plex Mono",monospace; font-size:11px; font-weight:600; padding:1px 7px 2px; border-radius:3px; white-space:nowrap; letter-spacing:.03em;}
+.rt-a{color:var(--good); background:var(--good-bg);}
+.rt-b{color:var(--accent-ink); background:var(--na-bg);}
+.rt-c{color:var(--mid); background:var(--mid-bg);}
+.rt-d{color:var(--weak); background:var(--weak-bg);}
+.rt-f{color:var(--na); background:var(--na-bg);}
+.area{font-family:"IBM Plex Mono",monospace; font-size:10.5px; font-weight:500; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-faint); border:1px solid var(--rule); border-radius:3px; padding:1px 7px 2px; white-space:nowrap; margin-right:4px;}
+.legend{background:var(--panel); border:1px solid var(--rule); border-radius:6px; padding:16px 20px; margin:22px 0 8px; font-size:14px; color:var(--ink-soft);}
+.legend b{color:var(--ink); font-family:Archivo,system-ui,sans-serif; font-size:13px; letter-spacing:.06em; text-transform:uppercase;}
+.legend p{margin:6px 0 0; max-width:none;}
+/* The evidence table is the widest thing on the page, so it is allowed to
+   break out of the 920px text column on large screens, and scrolls inside
+   its own box (vertically as well) so the header row can stick. */
+.tablewrap{overflow:auto; border:1px solid var(--rule); border-radius:6px;
+  margin:18px 0 10px; max-height:min(78vh,900px); overscroll-behavior:contain;}
+@media (min-width:1180px){
+  .tablewrap{width:min(1320px,calc(100vw - 48px)); margin-left:50%; transform:translateX(-50%);}
+}
+table{border-collapse:separate; border-spacing:0; width:100%; font-size:13px;
+  line-height:1.45; min-width:980px;}
+caption{text-align:left; font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); padding:10px 12px 0;}
+th{font-family:Archivo,system-ui,sans-serif; font-size:11.5px; letter-spacing:.07em;
+  text-transform:uppercase; text-align:left; color:var(--ink-soft);
+  border-bottom:2px solid var(--rule); padding:10px 10px; background:var(--panel);
+  position:sticky; top:0; z-index:2;}
+td{border-bottom:1px solid var(--rule); padding:9px 10px; vertical-align:top;}
+tbody tr:hover td{background:color-mix(in srgb,var(--panel) 55%,transparent);}
+tr:last-child td{border-bottom:none}
+td.num, td.mono{font-family:"IBM Plex Mono",monospace; font-size:11.5px; white-space:nowrap; color:var(--ink-soft); font-variant-numeric:tabular-nums;}
+.note{font-size:13.5px; color:var(--ink-faint); max-width:70ch;}
+.watch li{margin-bottom:10px}
+.src{background:var(--panel); border:1px solid var(--rule); border-radius:6px; padding:18px 22px; margin-top:16px;}
+.src p{max-width:none; font-size:15px; margin-bottom:10px;}
+.src p:last-child{margin:0}
+.foot{margin-top:64px; border-top:1px solid var(--rule); padding-top:16px; font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-faint); display:flex; flex-wrap:wrap; gap:4px 24px;}
+code{font-family:"IBM Plex Mono",monospace; font-size:.86em; color:var(--code); background:var(--na-bg); padding:0 4px; border-radius:3px;}
+.bluf{font-size:17px; line-height:1.6; margin:18px 0 22px; max-width:70ch;}
+a.ref{text-decoration:none; font-variant-numeric:tabular-nums;}
+a.ref:hover{text-decoration:underline;}
+tr[id]{scroll-margin-top:24px;}
+tr:target td{background:var(--kj-bg);}
+@media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+
+/* ---------------------------------------------------------------- *
+ * Navigation, small screens and print. Added 2026-11-14.
+ * ---------------------------------------------------------------- */
+
+/* The section nav sticks, so a reader forty minutes into the issue can still
+   see where they are and jump. .is-here is set by the scrollspy in the page
+   shell; without JS the nav still works, it just does not highlight. */
+nav.toc{
+  position:sticky; top:0; z-index:5;
+  background:color-mix(in srgb,var(--paper) 92%,transparent);
+  backdrop-filter:saturate(1.4) blur(6px);
+  margin-left:-24px; margin-right:-24px; padding-left:24px; padding-right:24px;
+}
+nav.toc a{padding:3px 0; border-bottom:2px solid transparent;}
+nav.toc a.is-here{color:var(--accent-ink); border-bottom-color:var(--accent);}
+
+/* Back to the top of the issue; appears once the masthead has scrolled away. */
+.totop{
+  position:fixed; right:20px; bottom:20px; z-index:6;
+  font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em;
+  text-transform:uppercase; text-decoration:none;
+  color:var(--ink-soft); background:var(--panel);
+  border:1px solid var(--rule); border-radius:4px; padding:8px 12px;
+  opacity:0; pointer-events:none; transition:opacity .18s ease;
+}
+.totop.show{opacity:1; pointer-events:auto;}
+.totop:hover{color:var(--accent-ink); border-color:var(--accent);}
+
+@media (max-width:700px){
+  /* The eight-column evidence table does not fit any phone, so each row
+     becomes a small labelled block instead of a horizontal scroll. */
+  .tablewrap{max-height:none; overflow:visible; border:none; border-radius:0;}
+  table{min-width:0; font-size:14px;}
+  /* Each cell carries its column name via data-l, so the header row is
+     redundant here; visually-hidden thead still widened the page, because a
+     table-header-group ignores width and overflow. */
+  thead{display:none;}
+  tbody tr{
+    display:block; border:1px solid var(--rule); border-radius:6px;
+    padding:10px 12px; margin-bottom:10px; background:var(--paper);
+  }
+  tbody td{display:block; border:none; padding:3px 0;}
+  tbody td:empty{display:none}
+  tbody tr:target{background:var(--kj-bg);}   /* whole card, not just the cells */
+  tbody td::before{
+    content:attr(data-l); display:block;
+    font-family:Archivo,system-ui,sans-serif; font-size:10.5px; font-weight:600;
+    letter-spacing:.07em; text-transform:uppercase; color:var(--ink-faint);
+    margin-bottom:1px;
+  }
+  tbody td.num::before{display:none}
+  tbody td.num{font-weight:600; color:var(--accent-ink); font-size:12px;}
+  nav.toc{position:static; backdrop-filter:none; background:none;}
+  .totop{display:none}
+}
+
+@media print{
+  /* Policy readers print and annotate. Give them the whole table, no
+     scrolling, no chrome, and the links spelled out. */
+  :root{--paper:#fff; --panel:#fff; --ink:#000; --ink-soft:#333; --ink-faint:#555;
+        --rule:#bbb; --accent:#000; --accent-ink:#000; --kj-bg:#fff;}
+  body{font-size:10.5pt; line-height:1.4;}
+  .wrap{max-width:none; padding:0;}
+  nav.toc, .totop{display:none;}
+  .tablewrap{max-height:none; overflow:visible; width:auto; margin:12pt 0;
+             transform:none; margin-left:0;}
+  table{min-width:0; font-size:8pt;}
+  th{position:static;}
+  thead{display:table-header-group;}
+  tr, .kj, .src, .legend{break-inside:avoid;}
+  h2{break-after:avoid; margin-top:18pt;}
+  .kj{border-left:2px solid #000;}
+  a{color:#000; text-decoration:underline;}
+  .src a[href^="http"]::after{content:" (" attr(href) ")"; font-size:7pt; word-break:break-all;}
+  .foot{border-top:1px solid #bbb;}
+}
+
+/* ---------------------------------------------------------------- *
+ * Definitions on hover and focus. Added 2026-11-14.
+ * Every rating chip, yardstick band and finding status carries its
+ * definition, so a first-time reader meets the scheme where they need it
+ * rather than in a block of front matter. Keyboard-reachable (tabindex on
+ * the element) and tap-reachable (:focus-visible fires on touch).
+ * ---------------------------------------------------------------- */
+.tip{position:relative; cursor:help;}
+strong.tip, span.tip:not(.rt){border-bottom:1px dotted var(--ink-faint);}
+.tip:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:2px;}
+/* The bubble only exists while shown: a hidden-but-present bubble near the
+   right edge still widens the page, which on a phone meant sideways scroll. */
+.tip::after{
+  content:none;
+  position:absolute; left:50%; bottom:calc(100% + 8px); transform:translateX(-50%);
+  width:max-content; max-width:min(300px,70vw);
+  background:var(--ink); color:var(--paper);
+  font-family:"Source Serif 4",Georgia,serif; font-size:13px; font-weight:400;
+  line-height:1.4; letter-spacing:0; text-transform:none;
+  padding:8px 11px; border-radius:5px; box-shadow:0 3px 12px rgba(0,0,0,.18);
+  opacity:0; visibility:hidden; transition:opacity .13s ease; z-index:10;
+}
+.tip:hover::after, .tip:focus-visible::after{content:attr(data-tip); opacity:1; visibility:visible;}
+/* Inside the evidence table the bubble would be clipped by the scroll box,
+   so there the native title attribute does the work instead. */
+.tablewrap .tip::after, .tablewrap .tip:hover::after, .tablewrap .tip:focus-visible::after{content:none;}
+/* On a phone the definition appears as a strip along the bottom of the
+   screen, which cannot run off either edge. */
+@media (max-width:700px){
+  .tip::after{position:fixed; left:12px; right:12px; bottom:12px; top:auto;
+              transform:none; width:auto; max-width:none; font-size:14px;}
+}
+@media print{ .tip::after{content:none;} strong.tip, span.tip{border-bottom:none;} }
+
+/* ---------------------------------------------------------------- *
+ * Collapsible sections. Added 2026-11-14.
+ * Key judgments and the source summary are always open; everything after
+ * starts collapsed, with its heading and an item count still visible.
+ * ---------------------------------------------------------------- */
+details.sec{border-top:1px solid var(--rule); margin-top:6px;}
+details.sec:last-of-type{border-bottom:1px solid var(--rule);}
+details.sec > summary{list-style:none; cursor:pointer; position:relative; padding-right:36px;}
+details.sec > summary::-webkit-details-marker{display:none;}
+details.sec > summary h2{margin:22px 0 18px; display:block;}
+details.sec > summary::after{
+  content:""; position:absolute; right:8px; top:50%;
+  width:9px; height:9px; margin-top:-7px;
+  border-right:2px solid var(--ink-soft); border-bottom:2px solid var(--ink-soft);
+  transform:rotate(45deg); transition:transform .15s ease;
+}
+details.sec[open] > summary::after{transform:rotate(225deg); margin-top:-2px;}
+details.sec > summary:hover h2{color:var(--accent-ink);}
+details.sec > summary:focus-visible{outline:2px solid var(--accent); outline-offset:4px; border-radius:3px;}
+.sec-count{
+  font-family:"IBM Plex Mono",monospace; font-size:11px; font-weight:500;
+  letter-spacing:.06em; color:var(--ink-faint); margin-left:8px; white-space:nowrap;
+}
+.sec-body{padding-bottom:22px;}
+details.sec > .sec-body > :first-child{margin-top:0;}
+
+nav.toc .toggle-all{
+  margin-left:auto; font:inherit; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--ink-soft); background:none; border:1px solid var(--rule); border-radius:3px;
+  padding:2px 9px; cursor:pointer;
+}
+nav.toc .toggle-all:hover{color:var(--accent-ink); border-color:var(--accent);}
+
+@media print{
+  details.sec > summary::after, nav.toc .toggle-all{display:none;}
+  details.sec{border:none;}
+}

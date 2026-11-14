@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title} · AI Safety Assessments</title>
+<meta name="description" content="{description}">
+<link rel="canonical" href="{canonical}">
+<meta property="og:site_name" content="AI Safety Assessments">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{description}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{canonical}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="{root}assets/weekly.css">
+</head>
+<body>
+<a id="top"></a>
+<main class="wrap">
+{body}
+</main>
+<a class="totop" href="#top">Top</a>
+<script>
+// Progressive enhancement only: without it the nav still works as anchors.
+(function () {
+  var nav = document.querySelector("nav.toc");
+  var top = document.querySelector(".totop");
+  if (top) {
+    var mast = document.querySelector(".mast");
+    var show = function () {
+      var past = mast ? mast.getBoundingClientRect().bottom < 0 : window.scrollY > 400;
+      top.classList.toggle("show", past);
+    };
+    show();
+    addEventListener("scroll", show, { passive: true });
+  }
+  if (!nav) return;
+  // Mark the last section heading that has scrolled past the top of the
+  // viewport. Simple, and correct whatever sections are open or closed.
+  var links = {};
+  nav.querySelectorAll("a[href^='#']").forEach(function (a) {
+    links[a.getAttribute("href").slice(1)] = a;
+  });
+  var heads = Object.keys(links)
+    .map(function (id) { return document.getElementById(id); })
+    .filter(Boolean);
+  var ticking = false;
+  function mark() {
+    ticking = false;
+    var current = null, edge = nav.getBoundingClientRect().bottom + 24;
+    heads.forEach(function (h) { if (h.getBoundingClientRect().top <= edge) current = h; });
+    Object.keys(links).forEach(function (id) {
+      links[id].classList.toggle("is-here", !!current && id === current.id);
+    });
+  }
+  addEventListener("scroll", function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(mark); }
+  }, { passive: true });
+  document.addEventListener("toggle", mark, true);
+  mark();
+})();
+
+// Collapsible sections: open whatever a link or the address bar points into,
+// offer expand/collapse all, and print everything.
+(function () {
+  var secs = Array.prototype.slice.call(document.querySelectorAll("details.sec"));
+  if (!secs.length) return;
+  function openFor(id) {
+    if (!id) return;
+    var el = document.getElementById(id);
+    if (!el) return;
+    var d = el.closest("details.sec");
+    if (d && !d.open) d.open = true;
+    requestAnimationFrame(function () { el.scrollIntoView({ block: "start" }); });
+  }
+  openFor(decodeURIComponent(location.hash.slice(1)));
+  addEventListener("hashchange", function () { openFor(decodeURIComponent(location.hash.slice(1))); });
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (a) openFor(decodeURIComponent(a.getAttribute("href").slice(1)));
+  });
+  var btn = document.querySelector(".toggle-all");
+  function sync() {
+    var all = secs.every(function (d) { return d.open; });
+    if (btn) { btn.textContent = all ? "Collapse all" : "Expand all"; btn.setAttribute("aria-pressed", all); }
+  }
+  secs.forEach(function (d) { d.addEventListener("toggle", sync); });
+  if (btn) btn.addEventListener("click", function () {
+    var open = !secs.every(function (d) { return d.open; });
+    secs.forEach(function (d) { d.open = open; });
+  });
+  var was = null;
+  addEventListener("beforeprint", function () {
+    was = secs.map(function (d) { return d.open; });
+    secs.forEach(function (d) { d.open = true; });
+  });
+  addEventListener("afterprint", function () {
+    if (was) secs.forEach(function (d, i) { d.open = was[i]; });
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

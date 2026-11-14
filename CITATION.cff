@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+title: AI Safety Assessments
+message: >-
+  If you refer to an issue or judgment from this publication, please cite it
+  by issue number and publication date.
+type: dataset
+authors:
+  - family-names: Wright
+    given-names: Darryl
+abstract: >-
+  Evidence-graded assessment of AI safety developments. Claim-level
+  credibility ratings, origin mapping, falsifiable judgments with deadlines,
+  and a public track record scored on resolution.
+license: CC-BY-4.0
+repository-code: >-
+  https://github.com/ai-safety-assessments/ai-safety-assessments.github.io
+url: https://ai-safety-assessments.github.io
