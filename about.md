@@ -152,3 +152,12 @@ The notes are withheld so they are not taken for part of the assessment. Each
 evidence row publishes the source with a link, what the source says, and the
 rating with its basis, so each claim can be checked against its source without
 them.
+
+## Visit counts
+
+Visits are counted with GoatCounter, which uses no cookies and stores nothing in
+your browser. It records which pages are viewed, the referring site, and the
+country, browser and screen size of each visit, in aggregate. On issue pages it
+also counts which sections are opened, whether definitions and evidence
+references are used, and which source sites readers follow. The counts are used
+only to see which parts of the publication are read.

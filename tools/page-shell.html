@@ -15,6 +15,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="{root}assets/weekly.css">
+<!-- Visit counts: GoatCounter, no cookies, nothing stored in the browser. -->
+<script data-goatcounter="https://ai-safety-assessments.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 <a id="top"></a>
@@ -100,6 +103,54 @@
     if (was) secs.forEach(function (d, i) { d.open = was[i]; });
   });
   sync();
+})();
+// Reader events, counted anonymously by GoatCounter (no cookies). Each kind is
+// counted at most once per page view, so one restless reader cannot inflate it.
+(function () {
+  var seen = {};
+  function count(path, title) {
+    if (seen[path]) return;
+    seen[path] = true;
+    var gc = window.goatcounter;
+    if (gc && gc.count) gc.count({ path: path, title: title || path, event: true });
+  }
+  // Collapsed sections opened (by heading id).
+  document.addEventListener("toggle", function (e) {
+    var d = e.target;
+    if (!d.matches || !d.matches("details.sec") || !d.open) return;
+    var h = d.querySelector("summary h2[id]");
+    if (h) count("open-section/" + h.id, "Opened section: " + h.id);
+  }, true);
+  var all = document.querySelector(".toggle-all");
+  if (all) all.addEventListener("click", function () { count("expand-all", "Expand all"); });
+  // Definitions read: a hover that lasts, or keyboard focus.
+  function kind(el) {
+    if (el.classList.contains("ref")) return "evidence-preview";
+    if (el.classList.contains("rt")) return "rating";
+    var t = el.getAttribute("data-tip") || "";
+    if (t.indexOf("PHIA") === 0) return "probability-band";
+    if (t.indexOf("Origin identifier") === 0) return "origin";
+    return "definition";
+  }
+  var timer = null;
+  document.addEventListener("mouseover", function (e) {
+    var el = e.target.closest && e.target.closest(".tip");
+    clearTimeout(timer);
+    if (el) timer = setTimeout(function () { count("tooltip/" + kind(el), "Tooltip: " + kind(el)); }, 400);
+  });
+  document.addEventListener("focusin", function (e) {
+    var el = e.target.closest && e.target.closest(".tip");
+    if (el) count("tooltip/" + kind(el), "Tooltip: " + kind(el));
+  });
+  // Clicks through to the evidence table, and out to primary sources.
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]");
+    if (!a) return;
+    if (a.classList.contains("ref")) { count("evidence-ref-click", "Clicked an evidence reference"); return; }
+    if (a.hostname && a.hostname !== location.hostname && /^https?:$/.test(a.protocol)) {
+      count("outbound/" + a.hostname, "Outbound: " + a.hostname);
+    }
+  });
 })();
 </script>
 </body>

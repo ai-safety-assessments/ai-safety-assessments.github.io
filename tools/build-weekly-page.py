@@ -165,7 +165,12 @@ def chip(code):
     letter, digit = code[0], code[1]
     tip = 'Source %s: %s. Information %s: %s.' % (
         letter, SOURCE_AXIS.get(letter, '?'), digit, INFO_AXIS.get(digit, '?'))
-    return f'<span class="rt {RT_CLASS[letter]}"{tip_attr(tip)}>{code}</span>'
+    # One class attribute: tip_attr() carries its own class="tip", and a second
+    # class attribute on the same element is ignored by browsers, which had left
+    # rating chips without the tooltip styling (found 2026-11-23).
+    esc = html.escape(tip, quote=True)
+    return (f'<span class="rt {RT_CLASS[letter]} tip" tabindex="0" '
+            f'data-tip="{esc}" title="{esc}">{code}</span>')
 
 def chips(s):
     """'A2 / C3' or 'B2/C3' -> chips joined by ' / '"""
